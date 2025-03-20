@@ -1,0 +1,4 @@
+mkdir yt-downloader
+cd yt-downloader
+npm init -y
+npm install express child_process cors dotenv

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YT Video Downloader</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        input { width: 80%; padding: 10px; margin: 10px 0; }
+        button { padding: 10px 15px; background: #28a745; color: white; border: none; cursor: pointer; }
+        button:hover { background: #218838; }
+        p { margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <h2>YT Video Downloader</h2>
+    <input type="text" id="urlInput" placeholder="Enter YouTube Video URL">
+    <button onclick="downloadVideo()">Download</button>
+    <p id="status"></p>
+
+    <script>
+        async function downloadVideo() {
+            const url = document.getElementById("urlInput").value;
+            if (!url) {
+                alert("Please enter a valid URL!");
+                return;
+            }
+            
+            document.getElementById("status").textContent = "Downloading...";
+            
+            try {
+                const response = await fetch(`https://your-app-name.onrender.com/download?url=${encodeURIComponent(url)}`);
+                const data = await response.json();
+                document.getElementById("status").textContent = data.message || "Download started!";
+            } catch (error) {
+                document.getElementById("status").textContent = "Error downloading video.";
+            }
+        }
+    </script>
+
+</body>
+</html>
